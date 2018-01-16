@@ -12,17 +12,21 @@ public class RemoteDataFrameService {
 //    private static String TMP_RDATA_FILE_EXT = ".RData";
 //    private static String PREPROCESS_FILE_PREFIX = "dataversePreprocess_";
 //    public static String LOCAL_TEMP_DIR = System.getProperty("java.io.tmpdir");
-    // 保存结果文件路径
+    /**
+     * the location of prep file
+     */
     public static String LOCAL_TEMP_DIR = root.FileRoot + "prep";
     // 配置Rserve文件
     private static String RSERVE_HOST = "127.0.0.1";
-    private static String RSERVE_USER = null;
-    private static String RSERVE_PWD = null;
+//    private static String RSERVE_USER = null;
+//    private static String RSERVE_PWD = null;
     private static int    RSERVE_PORT = 6311;
-    // R脚本路径 com/monetware/demo/prep/scripts/preprocess.R
+    /**
+     * R script location com/monetware/demo/prep/scripts/preprocess.R
+     */
 //    private static String DATAVERSE_R_FUNCTIONS = "com/monetware/demo/com.monetware.demo.prep/scripts/dataverse_r_functions.R";
     private static String DATAVERSE_R_PREPROCESSING = "/preprocess.R";
-    // 传入的Rserve的临时文件的路径
+    //
 //    public static String RSERVE_TMP_DIR="/Users/liyuan/Documents/Junk/Rserv";
 
 
@@ -32,21 +36,12 @@ public class RemoteDataFrameService {
     public String tempFileNameIn = "test";
     public String tempFileNameOut = "result";
 
-
-    // 如果工作文件夹路径不存在就创建
-//    public void setupWorkingDirectory(RConnection c) {
-//
-//        try {
-//            // check the temp directory; try to create it if it doesn't exist:
-//
-//            String checkWrkDir = "if (!file_test('-d', '" + RSERVE_TMP_DIR + "')) {dir.create('" + RSERVE_TMP_DIR + "', showWarnings = FALSE, recursive = TRUE);}";
-//            c.voidEval(checkWrkDir);
-//
-//        } catch (RserveException rse) {
-//            rse.printStackTrace();
-//        }
-//    }
-
+    /**
+     * Get the input file size
+     * @param c
+     * @param targetFilename
+     * @return
+     */
     public int getFileSize(RConnection c, String targetFilename){
         dbgLog.fine("targetFilename="+targetFilename);
         int fileSize = 0;
@@ -61,6 +56,15 @@ public class RemoteDataFrameService {
         return fileSize;
     }
 
+    /**
+     * inplement the transformation from remote
+     * @param c
+     * @param targetFilename
+     * @param tmpFilePrefix
+     * @param tmpFileExt
+     * @param fileSize
+     * @return
+     */
     public File transferRemoteFile(RConnection c, String targetFilename,
                                    String tmpFilePrefix, String tmpFileExt, int fileSize) {
 
@@ -214,7 +218,7 @@ public class RemoteDataFrameService {
 
 
     /**
-     * 在文件前面追加文件内容
+     * add something before one file
      *
      * @param
      * @return
