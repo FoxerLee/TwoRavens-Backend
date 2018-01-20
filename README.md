@@ -79,9 +79,9 @@ This interface candownload .tab file.
 
 ```
 main
-├── java
+├── java (Spring boot code about create or download files)
 │   └── com
-│       └── monetware
+│       └── monetware 
 │           └── demo
 │               ├── DemoApplication.java
 │               ├── controller (Create and Download implementation)
@@ -99,7 +99,7 @@ main
 │                   ├── CreateXML.java
 │                   ├── SummaryStatCalculator.java
 │                   └── WriteXML.java
-└── resources 
+└── resources (Store files)
     ├── application.properties
     ├── index.html
     ├── preprocess.R
@@ -113,3 +113,13 @@ main
                 └── test-ddi.xml
 ```
 
+*resources:* Store created files like xml, prep and tab file.
+
+- *static:* Store created files
+
+*java:*  Spring boot code about create or download files
+
+- *controller:* Create and Download implementation
+- *prep:* Create .prep file
+- *xml:* Create .xml file
+- *variable:* Some useful Variable
